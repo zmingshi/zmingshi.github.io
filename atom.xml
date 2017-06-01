@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>zmingshi@博客</title>
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-01T09:31:20.172Z</updated>
+  <updated>2017-06-01T10:35:00.029Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,26 +16,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2017/06/01/hello-world/"/>
-    <id>http://yoursite.com/2017/06/01/hello-world/</id>
-    <published>2017-06-01T09:31:20.172Z</published>
-    <updated>2017-06-01T09:31:20.172Z</updated>
+    <title>logistic_regression</title>
+    <link href="http://yoursite.com/2017/06/01/logistic-regression/"/>
+    <id>http://yoursite.com/2017/06/01/logistic-regression/</id>
+    <published>2017-06-01T10:26:30.000Z</published>
+    <updated>2017-06-01T10:35:00.029Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <content type="html"><![CDATA[<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>$$h<em>{\vec w} (\mathbf x) = \sum</em>{i=0}^nw_i x_i = w^T \mathbf x$$</p>
+<h3 id="1-似然函数"><a href="#1-似然函数" class="headerlink" title="1. 似然函数"></a>1. 似然函数</h3><p>$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$</p>
+<ul>
+<li>其中$x^{(i)}$ 为第$i$个样本, 误差$\epsilon^{(i)}$ 服从均值为0，方差为$\sigma^2$ 的高斯分布(中心极限定理), 共$m$ 个样本.<br>$$p\left(\epsilon^{(i)}\right) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(\epsilon^{(i)}\right)^2}{2\sigma^2} \right)$$</li>
+</ul>
+<p>$$p\left(y^{(i)}|x^{(i)};w \right) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)$$</p>
+<p>$$\begin{align}<br>L(w) &amp;= \prod<em>{i=1}^m p\left(y^{(i)}|x^{(i)};w \right) \<br>          &amp;= \prod</em>{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)<br>\end{align}$$</p>
+<ul>
+<li>上述似然函数取对数得到如下结果：<br>$$\begin{align}<br>l(w) &amp;= \log L(w) \<pre><code>&amp;= \log \prod_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\
+&amp;= \sum_{i=1}^m\log \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\
+&amp;= m\log \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2}\sum_{i=1}^m\left(y^{(i)} - w^Tx^{(i)}\right)^2
+</code></pre>\end{align}$$</li>
+<li><p>最小二乘损失函数如下:<br>$$\begin{align}<br>J(w) &amp;= \frac{1}{2}\sum_{i=1}^m\left(w^Tx^{(i)} - y^{(i)}\right)^2 \<br>&amp;= \frac{1}{2}(Xw - y)^T(Xw-y)<br>\end{align}$$</p>
+</li>
+<li><p>求解梯度得到驻点，从而得到解析结果：<br>$$w = \left(X^TX\right)^{-1}X^Ty$$</p>
+</li>
+<li>防止$X^TX$ 不可逆或者说过拟合, 加入$\lambda$ 扰动：<br>$$w = \left(X^TX + \lambda I\right)^{-1}X^Ty$$</li>
+<li>由于$X^TX$为半正定矩阵，则对于任意$\lambda &gt; 0$， 则$\left(X^TX + \lambda I\right)$ 一定正定，从而保证可逆： 对于任意非零向量$u$,  $u^T\left(X^TX + \lambda I\right)u = u^TX^TXu + \lambda u^Tu$ &gt; 0</li>
+</ul>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;h2 id=&quot;线性回归&quot;&gt;&lt;a href=&quot;#线性回归&quot; class=&quot;headerlink&quot; title=&quot;线性回归&quot;&gt;&lt;/a&gt;线性回归&lt;/h2&gt;&lt;p&gt;$$h&lt;em&gt;{\vec w} (\mathbf x) = \sum&lt;/em&gt;{i=0}^nw_i x_i = w^T \m
     
     </summary>
     
