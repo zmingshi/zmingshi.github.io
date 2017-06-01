@@ -97,16 +97,16 @@
 
 
 
-<meta name="description" content="线性回归$$h{\vec w} (\mathbf x) = \sum{i=0}^nw_i x_i = w^T \mathbf x$$ 1. 似然函数$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$  其中$x^{(i)}$ 为第$i$个样本, 误差$\epsilon^{(i)}$ 服从均值为0，方差为$\sigma^2$ 的高斯分布(中心极限定理), 共$m$ 个">
+<meta name="description" content="线性回归$$h_{\vec w} (\mathbf x) = \sum_{i=0}^nw_i x_i = w^T \mathbf x$$ 1. 似然函数$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$  其中$x^{(i)}$ 为第$i$个样本, 误差$\epsilon^{(i)}$ 服从均值为0，方差为$\sigma^2$ 的高斯分布(中心极限定理), 共$m$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="logistic_regression">
 <meta property="og:url" content="http://yoursite.com/2017/06/01/logistic-regression/index.html">
 <meta property="og:site_name" content="zmingshi@博客">
-<meta property="og:description" content="线性回归$$h{\vec w} (\mathbf x) = \sum{i=0}^nw_i x_i = w^T \mathbf x$$ 1. 似然函数$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$  其中$x^{(i)}$ 为第$i$个样本, 误差$\epsilon^{(i)}$ 服从均值为0，方差为$\sigma^2$ 的高斯分布(中心极限定理), 共$m$ 个">
-<meta property="og:updated_time" content="2017-06-01T10:35:00.029Z">
+<meta property="og:description" content="线性回归$$h_{\vec w} (\mathbf x) = \sum_{i=0}^nw_i x_i = w^T \mathbf x$$ 1. 似然函数$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$  其中$x^{(i)}$ 为第$i$个样本, 误差$\epsilon^{(i)}$ 服从均值为0，方差为$\sigma^2$ 的高斯分布(中心极限定理), 共$m$">
+<meta property="og:updated_time" content="2017-06-01T11:04:51.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="logistic_regression">
-<meta name="twitter:description" content="线性回归$$h{\vec w} (\mathbf x) = \sum{i=0}^nw_i x_i = w^T \mathbf x$$ 1. 似然函数$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$  其中$x^{(i)}$ 为第$i$个样本, 误差$\epsilon^{(i)}$ 服从均值为0，方差为$\sigma^2$ 的高斯分布(中心极限定理), 共$m$ 个">
+<meta name="twitter:description" content="线性回归$$h_{\vec w} (\mathbf x) = \sum_{i=0}^nw_i x_i = w^T \mathbf x$$ 1. 似然函数$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$  其中$x^{(i)}$ 为第$i$个样本, 误差$\epsilon^{(i)}$ 服从均值为0，方差为$\sigma^2$ 的高斯分布(中心极限定理), 共$m$">
 
 
 
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -217,7 +217,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -287,7 +287,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-01T18:26:30+08:00">
                 2017-06-01
@@ -324,17 +324,17 @@
       
 
       
-        <h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>$$h<em>{\vec w} (\mathbf x) = \sum</em>{i=0}^nw_i x_i = w^T \mathbf x$$</p>
+        <h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>$$h_{\vec w} (\mathbf x) = \sum_{i=0}^nw_i x_i = w^T \mathbf x$$</p>
 <h3 id="1-似然函数"><a href="#1-似然函数" class="headerlink" title="1. 似然函数"></a>1. 似然函数</h3><p>$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$</p>
 <ul>
 <li>其中$x^{(i)}$ 为第$i$个样本, 误差$\epsilon^{(i)}$ 服从均值为0，方差为$\sigma^2$ 的高斯分布(中心极限定理), 共$m$ 个样本.<br>$$p\left(\epsilon^{(i)}\right) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(\epsilon^{(i)}\right)^2}{2\sigma^2} \right)$$</li>
 </ul>
 <p>$$p\left(y^{(i)}|x^{(i)};w \right) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)$$</p>
-<p>$$\begin{align}<br>L(w) &amp;= \prod<em>{i=1}^m p\left(y^{(i)}|x^{(i)};w \right) \<br>          &amp;= \prod</em>{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)<br>\end{align}$$</p>
+<p>$$\begin{align}<br>L(w) &amp;= \prod_{i=1}^m p\left(y^{(i)}|x^{(i)};w \right) \\<br>          &amp;= \prod_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)<br>\end{align}$$</p>
 <ul>
-<li>上述似然函数取对数得到如下结果：<br>$$\begin{align}<br>l(w) &amp;= \log L(w) \<pre><code>&amp;= \log \prod_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\
-&amp;= \sum_{i=1}^m\log \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\
-&amp;= m\log \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2}\sum_{i=1}^m\left(y^{(i)} - w^Tx^{(i)}\right)^2
+<li>上述似然函数取对数得到如下结果：<br>$$\begin{align}<br>l(w) &amp;= \log L(w) \\<pre><code>&amp;= \log \prod\_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\\\
+&amp;= \sum\_{i=1}^m\log \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\\\
+&amp;= m\log \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2}\sum\_{i=1}^m\left(y^{(i)} - w^Tx^{(i)}\right)^2
 </code></pre>\end{align}$$</li>
 <li><p>最小二乘损失函数如下:<br>$$\begin{align}<br>J(w) &amp;= \frac{1}{2}\sum_{i=1}^m\left(w^Tx^{(i)} - y^{(i)}\right)^2 \<br>&amp;= \frac{1}{2}(Xw - y)^T(Xw-y)<br>\end{align}$$</p>
 </li>
@@ -420,10 +420,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -444,7 +444,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -521,7 +521,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
