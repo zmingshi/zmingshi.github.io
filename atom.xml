@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-02T05:40:33.024Z</updated>
+  <updated>2017-06-02T05:52:10.672Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>logistic_regression</title>
-    <link href="http://yoursite.com/2017/06/01/logistic-regression/"/>
-    <id>http://yoursite.com/2017/06/01/logistic-regression/</id>
+    <title>逻辑回归</title>
+    <link href="http://yoursite.com/2017/06/01/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/"/>
+    <id>http://yoursite.com/2017/06/01/逻辑回归/</id>
     <published>2017-06-01T10:26:30.000Z</published>
-    <updated>2017-06-02T05:40:33.024Z</updated>
+    <updated>2017-06-02T05:52:10.672Z</updated>
     
     <content type="html"><![CDATA[<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>$$h_{\vec w}(\mathbf x) = \sum_{i=0}^n w_ix_i = w^T \mathbf x$$</p>
 <h3 id="似然函数"><a href="#似然函数" class="headerlink" title="似然函数"></a>似然函数</h3><p>$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$</p>
