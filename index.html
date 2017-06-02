@@ -203,7 +203,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -213,7 +213,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -285,7 +285,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-01T18:26:30+08:00">
                 2017-06-01
@@ -330,11 +330,11 @@
 <li>其中$x^{(i)}$ 为第$i$个样本, 误差$\epsilon^{(i)}$ 服从均值为0，方差为$\sigma^2$ 的高斯分布(中心极限定理), 共$m$ 个样本.<br>$$p\left(\epsilon^{(i)}\right) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(\epsilon^{(i)}\right)^2}{2\sigma^2} \right)$$</li>
 </ul>
 <p>$$p\left(y^{(i)}|x^{(i)};w \right) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)$$</p>
-<p>$$\begin{align}<br>L(w) &amp;= \prod_{i=1}^m p\left(y^{(i)}|x^{(i)};w \right) \\\\<br>          &amp;= \prod_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)<br>\end{align}$$</p>
+<p>$$\begin{align}<br>L(w) &amp;= \prod_{i=1}^m p\left(y^{(i)}|x^{(i)};w \right) \\<br>          &amp;= \prod_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)<br>\end{align}$$</p>
 <ul>
-<li><p>上述似然函数取对数得到如下结果：<br>$$<br>\begin{align}<br>l(w) &amp;= \log L(w) \\\\<br>   &amp;= \prod_{i=1}^m\frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\\\<br>   &amp;= \sum_{i=1}^m\log \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\\\<br>   &amp;= m\log \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2}\sum_{i=1}^m\left(y^{(i)} - w^Tx^{(i)}\right)^2<br>\end{align}<br>$$</p>
+<li><p>上述似然函数取对数得到如下结果：<br>$$<br>\begin{align}<br>l(w) &amp;= \log L(w) \\<br>   &amp;= \prod_{i=1}^m\frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\<br>   &amp;= \sum_{i=1}^m\log \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\<br>   &amp;= m\log \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2}\sum_{i=1}^m\left(y^{(i)} - w^Tx^{(i)}\right)^2<br>\end{align}<br>$$</p>
 </li>
-<li><p>最小二乘损失函数如下:<br>$$\begin{align}<br>J(w) &amp;= \frac{1}{2}\sum_{i=1}^m\left(w^Tx^{(i)} - y^{(i)}\right)^2 \\\\<br>&amp;= \frac{1}{2}(Xw - y)^T(Xw-y)<br>\end{align}$$</p>
+<li><p>最小二乘损失函数如下:<br>$$\begin{align}<br>J(w) &amp;= \frac{1}{2}\sum_{i=1}^m\left(w^Tx^{(i)} - y^{(i)}\right)^2 \\<br>&amp;= \frac{1}{2}(Xw - y)^T(Xw-y)<br>\end{align}$$</p>
 </li>
 <li><p>求解梯度得到驻点，从而得到解析结果：<br>$$w = \left(X^TX\right)^{-1}X^Ty$$</p>
 </li>
@@ -421,7 +421,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -482,7 +482,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
