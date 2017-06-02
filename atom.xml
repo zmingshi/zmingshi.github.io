@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-02T04:32:36.943Z</updated>
+  <updated>2017-06-02T05:30:26.954Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/06/01/logistic-regression/"/>
     <id>http://yoursite.com/2017/06/01/logistic-regression/</id>
     <published>2017-06-01T10:26:30.000Z</published>
-    <updated>2017-06-02T04:32:36.943Z</updated>
+    <updated>2017-06-02T05:30:26.954Z</updated>
     
     <content type="html"><![CDATA[<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>$$h_{\vec w}(\mathbf x) = \sum_{i=0}^n w_ix_i = w^T \mathbf x$$</p>
 <h3 id="1-似然函数"><a href="#1-似然函数" class="headerlink" title="1. 似然函数"></a>1. 似然函数</h3><p>$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$</p>
@@ -38,6 +38,39 @@
 </li>
 <li>防止$X^TX$ 不可逆或者说过拟合, 加入$\lambda$ 扰动：<br>$$w = \left(X^TX + \lambda I\right)^{-1}X^Ty$$</li>
 <li>由于$X^TX$为半正定矩阵，则对于任意$\lambda &gt; 0$， 则$\left(X^TX + \lambda I\right)$ 一定正定，从而保证可逆： 对于任意非零向量$u$,  $u^T\left(X^TX + \lambda I\right)u = u^TX^TXu + \lambda u^Tu$ &gt; 0</li>
+</ul>
+<h3 id="2-正则化"><a href="#2-正则化" class="headerlink" title="2. 正则化"></a>2. 正则化</h3><p>$\forall \lambda&gt;0, \rho \in [0,1]$, 正则化定义如下：</p>
+<ul>
+<li>L2-Norm : $ J(\vec w) = \frac{1}{2}\sum_{i=1}^m\left(h_{\vec w}(x^{(i)}) - y^{(i)}\right)^2 + \lambda \sum_{i=1}^nw_i^2  $</li>
+<li>L1-Norm : $ J(\vec w) = \frac{1}{2}\sum_{i=1}^m\left(h_{\vec w}(x^{(i)}) - y^{(i)}\right)^2 + \lambda \sum_{i=1}^n|w_i|  $</li>
+<li>Elastic-Net : $ J(\vec w) = \frac{1}{2}\sum_{i=1}^m\left(h_{\vec w}(x^{(i)}) - y^{(i)}\right)^2 + \lambda \left(\rho\cdot \sum_{i=1}^n|w_i| + (1-\rho) \cdot \sum_{i=1}^nw_i^2\right)  $</li>
+<li>正则化可以用来防止过拟合，其中L1 正则可以产生稀疏解，L2 正则可以产生平滑解，从贝叶斯的角度来讲，正则化等价于对模型参数引入先验分布，L2 正则假定参数先验服从高斯分布，L1 正则假定参数先验服从拉普拉斯分布。参考：<a href="http://charleshm.github.io/2016/03/Regularized-Regression/" target="_blank" rel="external">http://charleshm.github.io/2016/03/Regularized-Regression/</a></li>
+</ul>
+<h4 id="2-1-Ridge-Regression"><a href="#2-1-Ridge-Regression" class="headerlink" title="2.1. Ridge Regression"></a>2.1. Ridge Regression</h4><p>对参数 $w$ 引入协方差为$\alpha^2$的零均值高斯先验, 用最大后验估计(MAP)</p>
+<p>$$\begin{align}<br>L(w) &amp;= p(y|w;x)p(w) \\<br> &amp;= \prod_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)<br>  \prod_{i=1}^j\frac{1}{\sqrt{2\pi\alpha^2}} \exp\left(- \frac{\left(w_j\right)^2}{2\alpha^2} \right) \\<br> &amp;= \prod_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)<br>  \frac{1}{\sqrt{2\pi\alpha^2}} \exp\left(- \frac{\left(w^Tw\right)}{2\alpha^2} \right)<br>\end{align}$$</p>
+<p>取对数：<br>$$\begin{align}<br>l(w) &amp;= \log L(w) \\<br>          &amp;= m\log \frac{1}{\sqrt{2\pi\sigma^2}} + n \log \frac{1}{\sqrt{2\pi\alpha^2}} - \frac{1}{2\sigma^2}\sum_{i=1}^m\left(y^{(i)} - w^Tx^{(i)}\right)^2 - \frac{1}{2\alpha^2} w^Tw \\<br>          &amp; \implies w_{MAP} = arg min_w \left(\frac{1}{2\sigma^2}\sum_{i=1}^m\left(y^{(i)} - w^Tx^{(i)}\right)^2 + \frac{1}{2\alpha^2} w^Tw \right)<br>\end{align}$$<br>等价于损失函数形式如下：<br>$$ J_R(w) = \frac{1}{m}\left(y -w^TX\right)^2 + \lambda ||w||_2  $$<br>ridge regression 并不具有产生稀疏解的能力，也就是说参数并不会真出现很多零。假设我们的预测结果与两个特征相关，L2正则倾向于综合两者的影响，给影响大的特征赋予高的权重；而L1正则倾向于选择影响较大的参数，而舍弃掉影响较小的那个。实际应用中 L2 正则表现往往会优于 L1正则，但 L1 正则会大大降低计算量。</p>
+<h4 id="2-2-Lasso-Regression"><a href="#2-2-Lasso-Regression" class="headerlink" title="2.2. Lasso Regression"></a>2.2. Lasso Regression</h4><p>拉普拉斯分布如下：<br>$$ f(x|u,b) =  \frac{1}{2b} \exp\left( -\frac{x-u}{b}\right)$$<br>对参数 $w$ 引入拉普拉斯先验分布($u=0$)，则容易得到：<br>$$w_{MAP} = arg min_w \left(\frac{1}{2\sigma^2}\sum_{i=1}^m\left(y^{(i)} - w^Tx^{(i)}\right)^2 + \frac{1}{2b^2} ||w||_1 \right)$$</p>
+<h4 id="2-3-Elastic-Net"><a href="#2-3-Elastic-Net" class="headerlink" title="2.3. Elastic-Net"></a>2.3. Elastic-Net</h4><p>同样假设$w$ 服从如下分布：<br>$$w \sim C(\lambda,\alpha)\exp(\lambda |w|_2 + \alpha|w|_1)$$<br>可以得到如下结果：<br>$$w_{MAP} = arg min_w |y - Xw|_2 + \lambda_1 ||w||_2 + \lambda_2||w||_2$$</p>
+<p>正则化参数等价于对参数引入 先验分布，使得 模型复杂度 变小（缩小解空间），对于噪声以及outliers的鲁棒性增强（泛化能力）。整个最优化问题从贝叶斯观点来看是一种贝叶斯最大后验估计，其中 正则化项 对应后验估计中的 先验信息 ，损失函数对应后验估计中的似然函数，两者的乘积即对应贝叶斯最大后验估计的形式。</p>
+<h2 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h2><p>$$h_{\vec w} (\mathbf x) = g(w^T \mathbf x) =  \frac{1}{1+\exp(-w^T \mathbf x)}$$<br>$$g’(x) = \left(\frac{1}{1+\exp(x)}\right)’ = g(x)(1 - g(x)) $$<br>设定：<br>$$p\left(y=1|x;w\right) = h_{\vec w} (\mathbf x) = g(w^T \mathbf x) =  \frac{1}{1+\exp(-w^T \mathbf x)}$$<br>$$p\left(y=0|x;w\right) = 1 - h_{\vec w} (\mathbf x) = g(-w^T \mathbf x) =  \frac{1}{1+\exp(w^T \mathbf x)}$$<br>通用表示如下：<br>$$p\left(y|x;w\right) = (h_{\vec w}(\mathbf x))^y (1-h_{\vec w}(\mathbf x))^{(1-y)}$$</p>
+<h3 id="似然函数"><a href="#似然函数" class="headerlink" title="似然函数"></a>似然函数</h3><p>$$\begin{align}<br>L(w) &amp;= p(y|X;w) \\<br>     &amp;= \prod_{i=1}^m p\left(y^{(i)}|x^{(i)};w \right) \\<br>     &amp;= \prod_{i=1}^m (h_{\vec w}(\mathbf x^{(i)}))^{y^{(i)}} (1-h_{\vec w}(\mathbf x^{(i)}))^{(1-{y^{(i)}})}<br>\end{align}$$</p>
+<ul>
+<li>上述似然函数取对数得到如下结果：<br>$$\begin{align}<br>l(w) &amp;= \log L(w) \\<br>   &amp;= \sum_{i=1}^m {y^{(i)}}\log(h_{\vec w}(\mathbf x^{(i)})) +  (1 -y^{(i)})\log(1-h_{\vec w}(\mathbf x^{(i)}))<br>\end{align}$$</li>
+<li><p>求导如下:<br>$$\begin{align}<br>\frac{\partial l(w)}{\partial w_i}<br>=&amp;  \sum_{i=1}^m \left(\frac{y^{(i)}}{h_{\vec w}(\mathbf x^{(i)})} - \frac{1-y^{(i)}}{1 - h_{\vec w}(\mathbf x^{(i)})} \right)\frac{\partial h(wx)}{\partial w_i}  \\<br>=&amp; \sum_{i=1}^m \left(y^{(i)} - g\left(\vec w x^{(i)}\right)\right)x_j^{(i)}<br>\end{align}$$</p>
+</li>
+<li><p>参数更新:<br>$$w_i := w_i + \alpha \sum_{i=1}^m \left(y^{(i)} - g\left(\vec w x^{(i)}\right)\right)x_j^{(i)}$$</p>
+</li>
+</ul>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><ol>
+<li><p>假设：$y_i \in \{0, 1\}$, $\hat y_i = \begin{cases} p_i, &amp; y_i = 1 \\ 1-p_i, &amp; y_i = 0 \end{cases}$<br>$$\begin{align}<br>L(w) &amp;= \prod_{i=1}^m p_i^{y^i} (1-p_i)^{1-y^i} \\<br> &amp;\implies  l(w) = \sum_{i=1}^m \ln\left[p_i^{y^i} (1-p_i)^{1-y^i}\right] \\<br> &amp; \underrightarrow{p_i = \frac{1}{1+exp(-f_i)}} l(w) = \sum_{i=1}^m \ln\left[ \left({\frac{1}{1+e^{-f_i}}}\right)^{y^i} \left(\frac{1}{1+e^{f_i}}\right)^{1-y^i} \right] \\<br>&amp; \therefore loss(y_i, \hat y_i) = -l(w) \\<br>&amp;= \sum_{i=1}^m \left[ y_i \ln \left(1+e^{-f_i} \right) + (1-y_i)\ln \left(1+e^{f_i} \right) \right]<br>\end{align}$$</p>
+</li>
+<li><p>假设：$y_i \in \{1, -1\}$, $\hat y_i = \begin{cases} p_i, &amp; y_i = 1 \\ 1-p_i, &amp; y_i = -1 \end{cases}$<br>$$\begin{align}<br>L(w) &amp;= \prod_{i=1}^m p_i^{(y^i+1)/2} (1-p_i)^{-(y^i-1)/2} \\<br> &amp;\implies  l(w) = \sum_{i=1}^m \ln\left[p_i^{(y^i+1)/2} (1-p_i)^{-(y^i-1)/2}\right] \\<br> &amp; \underrightarrow{p_i = \frac{1}{1+exp(-f_i)}} l(w) = \sum_{i=1}^m \ln\left[ \left({\frac{1}{1+e^{-f_i}}}\right)^{(y^i+1)/2} \left(\frac{1}{1+e^{f_i}}\right)^{-(y^i-1)/2} \right] \\<br>&amp; \therefore loss(y_i, \hat y_i) = -l(w) \\<br>&amp;= \sum_{i=1}^m \left[(y^i+1)/2 \ln \left(1+e^{-f_i} \right) -(y^i-1)/2 \ln \left(1+e^{f_i} \right) \right] \\<br>&amp;= \begin{cases} \sum_{i=1}^m \ln\left[\left(1+e^{-f_i}\right)\right], &amp; y_i = 1 \\ \sum_{i=1}^m \ln\left[\left(1+e^{f_i}\right)\right], &amp; y_i = -1 \end{cases} \\<br>&amp;= \sum_{i=1}^m \ln\left[\left(1+e^{-y_i\cdot f_i}\right)\right]<br>\end{align}$$</p>
+</li>
+</ol>
+<h2 id="LIBFM"><a href="#LIBFM" class="headerlink" title="LIBFM"></a>LIBFM</h2><p>$$\hat y(\mathbf x) = w_0 + \sum_{i=1}^n w_ix_i + \sum_{i=1}^n\sum_{j=i+1}^n \langle\mathbf v_i, \mathbf v_j\rangle x_ix_j$$</p>
+<ul>
+<li>$\mathbf w \in \mathbb R^n, \mathbf V \in \mathbb R^{n*k}, \langle\mathbf v_i, \mathbf v_j\rangle = \sum_{f=1}^k v_{i,f} \cdot v_{j,f}$</li>
+<li>其中$ \sum_{i=1}^n\sum_{j=i+1}^n \langle\mathbf v_i, \mathbf v_j\rangle x_ix_j$ 可以做如下化简：<br>$$\begin{align}<br>&amp;\sum_{i=1}^n\sum_{j=i+1}^n \langle\mathbf v_i, \mathbf v_j\rangle x_ix_j \\<br>=&amp; \frac{1}{2}\left( \sum_{i=1}^n\sum_{j=1}^n \langle\mathbf v_i, \mathbf v_j\rangle x_ix_j  - \sum_{i=1}^n \langle\mathbf v_i, \mathbf v_i\rangle x_ix_i \right) \\<br>=&amp; \frac{1}{2}\left( \sum_{i=1}^n\sum_{j=1}^n\sum_{f=1}^k v_{i,f}v_{j,f}x_ix_j  - \sum_{i=1}^n \sum_{f=1}^k v_{i,f}v_{i,f} x_ix_i \right) \\<br>=&amp; \frac{1}{2}\sum_{f=1}^k \left( \sum_{i=1}^nv_{i,f}x_i\sum_{j=1}^nv_{j,f}x_j  - \sum_{i=1}^n v_{i,f}^2 x_i^2 \right) \\<br>=&amp; \frac{1}{2}\sum_{f=1}^k \left( \left(\sum_{i=1}^nv_{i,f}x_i \right)^2  - \sum_{i=1}^n v_{i,f}^2 x_i^2 \right)<br>\end{align}$$</li>
 </ul>
 ]]></content>
     
