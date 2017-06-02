@@ -324,19 +324,17 @@
       
         
           
-            <h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>$$h_{\vec w} (\mathbf x) = \sum_{i=0}^nw_i x_i = w^T \mathbf x$$</p>
+            <h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>$$h_{\vec w}(\mathbf x) = \sum_{i=0}^n w_ix_i = w^T \mathbf x$$</p>
 <h3 id="1-似然函数"><a href="#1-似然函数" class="headerlink" title="1. 似然函数"></a>1. 似然函数</h3><p>$$y^{(i)} = w^Tx^{(i)} + \epsilon^{(i)}$$</p>
 <ul>
 <li>其中$x^{(i)}$ 为第$i$个样本, 误差$\epsilon^{(i)}$ 服从均值为0，方差为$\sigma^2$ 的高斯分布(中心极限定理), 共$m$ 个样本.<br>$$p\left(\epsilon^{(i)}\right) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(\epsilon^{(i)}\right)^2}{2\sigma^2} \right)$$</li>
 </ul>
 <p>$$p\left(y^{(i)}|x^{(i)};w \right) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)$$</p>
-<p>$$\begin{align}<br>L(w) &amp;= \prod_{i=1}^m p\left(y^{(i)}|x^{(i)};w \right) \\<br>          &amp;= \prod_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)<br>\end{align}$$</p>
+<p>$$\begin{align}<br>L(w) &amp;= \prod_{i=1}^m p\left(y^{(i)}|x^{(i)};w \right) \\\\<br>          &amp;= \prod_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right)<br>\end{align}$$</p>
 <ul>
-<li>上述似然函数取对数得到如下结果：<br>$$\begin{align}<br>l(w) &amp;= \log L(w) \\<pre><code>&amp;= \log \prod\_{i=1}^m \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\\\
-&amp;= \sum\_{i=1}^m\log \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\\\
-&amp;= m\log \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2}\sum\_{i=1}^m\left(y^{(i)} - w^Tx^{(i)}\right)^2
-</code></pre>\end{align}$$</li>
-<li><p>最小二乘损失函数如下:<br>$$\begin{align}<br>J(w) &amp;= \frac{1}{2}\sum_{i=1}^m\left(w^Tx^{(i)} - y^{(i)}\right)^2 \<br>&amp;= \frac{1}{2}(Xw - y)^T(Xw-y)<br>\end{align}$$</p>
+<li><p>上述似然函数取对数得到如下结果：<br>$$<br>\begin{align}<br>l(w) &amp;= \log L(w) \\\\<br>   &amp;= \prod_{i=1}^m\frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\\\<br>   &amp;= \sum_{i=1}^m\log \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{\left(y^{(i)} - w^Tx^{(i)}\right)^2}{2\sigma^2} \right) \\\\<br>   &amp;= m\log \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2}\sum_{i=1}^m\left(y^{(i)} - w^Tx^{(i)}\right)^2<br>\end{align}<br>$$</p>
+</li>
+<li><p>最小二乘损失函数如下:<br>$$\begin{align}<br>J(w) &amp;= \frac{1}{2}\sum_{i=1}^m\left(w^Tx^{(i)} - y^{(i)}\right)^2 \\\\<br>&amp;= \frac{1}{2}(Xw - y)^T(Xw-y)<br>\end{align}$$</p>
 </li>
 <li><p>求解梯度得到驻点，从而得到解析结果：<br>$$w = \left(X^TX\right)^{-1}X^Ty$$</p>
 </li>
